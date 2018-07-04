@@ -15,8 +15,8 @@ class DataPack_Model extends CI_Model
 	function save($data)
 	{
 		$newdata = array(
-			'code' => $data['fullname'],
-			'ipaddress' => $data['username'],
+			'code' => $data['code'],
+			'ipaddress' => $data['ipaddress'],
 			'createddate' => date('Y-m-d H:i:s')
 		);
 		$this->db->insert('datapack', $newdata);

@@ -10,5 +10,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond $1 !^(index\.php|images|robots\.txt)
 RewriteRule ^(.*)$ index.php?/$1 [L]
-
+RewriteRule ^css/ - [L]
+RewriteRule ^fonts/ - [L]
+RewriteRule ^js/ - [L]
+RewriteRule ^vendor/ - [L]
 </IfModule>
