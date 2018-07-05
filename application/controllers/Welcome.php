@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function home()
 	{
-		$this->load->view('datapack/datapack');
+		$this->load->view('page-one');
 	}
 
 
