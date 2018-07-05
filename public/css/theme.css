@@ -801,13 +801,13 @@ section {
 
 @media (max-width: 1600px) {
     .au-input--xl {
-        min-width: 350px;
+        min-width: 720px;
     }
 }
 
 @media (max-width: 991px) {
     .au-input--xl {
-        min-width: 350px;
+        min-width: 150px;
     }
 }
 

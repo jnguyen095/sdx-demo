@@ -23,8 +23,10 @@ class DataPack_controller extends CI_Controller
 		if($crudaction != null && $crudaction == "insert"){
 			$data['code'] = $this->input->post('code');
 			$data['ipaddress'] = $this->input->post('ipaddress');
+			$data['date-active'] = date('Y-m-d H:i:s',strtotime($this->input->post('date-active').date('H:i:s')));
 			$this->DataPack_Model->save($data);
-		}
-		$this->load->view('dataPack');
+			$this->session->set_flashdata('message','Add plan seccuess!');
+			}
+		redirect('/page-one');
 	}
 }

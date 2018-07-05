@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:h="http://www.w3.org/1999/xhtml">
 
 <head>
 	<!-- Required meta tags-->
@@ -35,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- Main CSS-->
 	<link href="<?php echo base_url(); ?>public/css/theme.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>public/src/ipInput.css">
 
 </head>
 
@@ -305,18 +306,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
+							<div class="message">
+<!--								--><?php
+//								$message = $this->session->flashdata('message');
+//								if(isset($message)){
+//										echo $message;
+//								}?>
+							</div>
 							<div class="overview-wrap">
 								<h2 class="title-1">ADD NEW PLANS</h2>
 							</div>
 						</div>
 					</div>
-					<form action="/sdx-demo/data-pack/add" method="post" class="row m-t-25">
+					<form action="/sdx-demo/data-pack/add" method="post" class="row m-t-25" id="formsubmit">
 						<input type="text" hidden="hidden" name="crudaction" value="insert">
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-md-6">
 									<label for="location" class="control-label mb-1">Location</label>
-									<select name="location" id="location" class="form-control">
+									<select name="location" id="location" class="form-control" disabled = "disabled">
 										<option value="0">Please select</option>
 										<option value="1">HCM</option>
 										<option value="2">Hà Nội</option>
@@ -325,21 +333,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-6" container>
+								<div class="col-md-6">
 									<label for="form-check" class="control-label mb-1">ISP</label>
 									<div class="wrap-isps col-md-12 row">
-									<div class="form-check">
+									<div class="form-check" >
 										<div class="radio">
 											<label for="Viettel.5">Viettel</label>
-											<input type="radio" id="Viettel" name="isps" value="Viettel">
+											<input type="radio" id="Viettel" name="isps" value="Viettel" disabled = "disabled">
 										</div>
 										<div class="radio">
 											<label for="FPT">FPT</label>
-											<input type="radio" id="FPT" name="isps" value="FPT">
+											<input type="radio" id="FPT" name="isps" value="FPT" disabled = "disabled">
 										</div>
 										<div class="radio">
 											<label for="VNPT">VNPT</label>
-											<input type="radio" id="VNPT" name="isps" value="VNPT">
+											<input type="radio" id="VNPT" name="isps" value="VNPT" disabled = "disabled">
 										</div>
 									</div>
 									</div>
@@ -350,32 +358,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="col-md-6">
 											<div class="form-check">
 												<div class="radio">
-													<label for="code0.5">0.5Mbps</label>
-													<input type="radio" id="code0.5" name="code" value="0.5Mbps">
+													<label for="code0.5">1/1Mbps</label>
+													<input type="radio" id="code0.5" name="code" value="1/1Mbps">
 												</div>
 												<div class="radio">
-													<label for="code0.5">0.6Mbps</label>
-													<input type="radio" id="code0.6" name="code" value="0.6Mbps">
+													<label for="code0.5">2/2Mbps</label>
+													<input type="radio" id="code0.6" name="code" value="2/2Mbps">
 												</div>
 												<div class="radio">
-													<label for="code0.5">0.7Mbps</label>
-													<input type="radio" id="code0.7" name="code" value="0.7Mbps">
+													<label for="code0.5">3/3Mbps</label>
+													<input type="radio" id="code0.7" name="code" value="3/3Mbps">
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-check">
 												<div class="radio">
-													<label for="code1.5">1.5Mbps</label>
-													<input type="radio" id="code1.5" name="code" value="1.5Mbps">
+													<label for="code1.5">4/4Mbps</label>
+													<input type="radio" id="code1.5" name="code" value="4/4Mbps">
 												</div>
 												<div class="radio">
-													<label for="code1.5">1.6Mbps</label>
-													<input type="radio" id="code1.6" name="code" value="1.6Mbps">
+													<label for="code1.5">5/5Mbps</label>
+													<input type="radio" id="code1.6" name="code" value="5/5Mbps">
 												</div>
 												<div class="radio">
-													<label for="code1.5">1.7Mbps</label>
-													<input type="radio" id="code1.7" name="code" value="1.7Mbps">
+													<label for="code1.5">6/6Mbps</label>
+													<input type="radio" id="code1.7" name="code" value="6/6Mbps">
 												</div>
 											</div>
 										</div>
@@ -387,14 +395,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="plan-name" class="control-label mb-1">Plan name</label>
-										<input id="plan-name" placeholder="Enter plan name" name="cc-number" type="tel" class="form-control cc-number identified visa" value="" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+										<input id="plan-name" disabled = "disabled" placeholder="Enter plan name" name="cc-number" type="tel" class="form-control cc-number identified visa" value="" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
 										<span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
 									</div>
 								</div>
 								<div class="col-md-6">
+									<div class="form-group ">
+											<label for="date-active" class="control-label mb-1">Date Active</label>
+											<input id="date-active" name="date-active"
+												    type="date" class="form-control cc-number identified visa">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+										<div class="form-group">
+											<label for="ipaddress" class="control-label mb-1">Ip</label>
+											<div id="ip"></div>
+											<input id="ipaddress" name="ipaddress" pattern="" hidden="hidden"
+												    type="tel" >
+											<span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+										</div>
+
+									</div>
+								<div class="col-md-6">
 									<div class="form-group">
 										<label for="option-item" class="control-label mb-1">Choose item</label>
-										<select name="option-item" id="option-item" class="form-control">
+										<select name="option-item" id="option-item" class="form-control" disabled = "disabled">
 											<option value="0">Please select</option>
 											<option value="1">3 Months</option>
 											<option value="2">6 Months</option>
@@ -403,41 +430,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="ipaddress" class="control-label mb-1">Ip</label>
-										<input id="ipaddress" name="ipaddress"
-											   placeholder="Enter ip"   type="tel" class="form-control cc-number identified visa" value="" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
-										<span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-									</div>
-								</div>
-							</div>
 							<div class="row plan-info">
 								<div class="col-md-1 plan-info-icon">
 									<i class="zmdi zmdi-view-agenda"></i>
 								</div>
 								<div class="col-md-10">
-									<h5 id="title-plan-end">Plan name</h5> <p id="refix-end"></p>
+									<h5 id="title-plan-end">Plan name</h5> <p id="refix-end">unknown</p>
 								</div>
-							</div>
-							<div class="row">
-									<div class="col-md-8 ">
-										<div class="monthly-rate">
-											<h5>MONTHLY RATE: 420.00 USD</h5> <span>(Price Excludes Tax)</span>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<button class="btn btn-primary" type="submit">
-											NEXT
-										</button>
-										<button class="btn btn-warning">
-											CANCEL
-										</button>
-									</div>
 							</div>
 						</div>
 					</form>
+					<div class="row">
+						<div class="col-md-8 ">
+							<div class="monthly-rate">
+								<h5>MONTHLY RATE: 420.00 USD</h5> <span>(Price Excludes Tax)</span>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<button class="btn btn-primary" id="btn-next">
+								NEXT
+							</button>
+							<button class="btn btn-warning">
+								CANCEL
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -446,6 +463,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 <style>
+	.ip-input-container {
+		width: 100%;
+	}
+	.ip-input-container .ip-input-item {
+		width: 24%;
+		font-size: 15px;
+	}
 	.plan-info{
 		padding: 15px 0;
 	}
@@ -469,8 +493,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin-left: 0;
 	}
 	.main-content{
-		padding-left:250px;
-		padding-right:250px;
+		padding-left:150px;
+		padding-right:150px;
 	}
 	.section__content{
 		background-color: ghostwhite;
@@ -491,16 +515,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	.js-scrollbar1{
 		background-color: #003B74;
 	}
-	.menu-sidebar {
-		width: 200px;
-	}
-	.page-container {
-		padding-left: 200px;
-	}
-	.header-desktop {
-		left: 200px;
-	}
-
 </style>
 <!-- Jquery JS-->
 <script src="<?php echo base_url(); ?>public/vendor/jquery-3.2.1.min.js"></script>
@@ -520,42 +534,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>public/vendor/circle-progress/circle-progress.min.js"></script>
 <script src="<?php echo base_url(); ?>public/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="<?php echo base_url(); ?>public/vendor/chartjs/Chart.bundle.min.js"></script>
-<script src="<?php echo base_url(); ?>public/vendor/select2/select2.min.js">
-</script>
-
+<script src="<?php echo base_url(); ?>public/vendor/select2/select2.min.js"></script>
+<script src="<?php echo base_url(); ?>public/src/ipInput.js"></script>
 <!-- Main JS-->
 <script src="<?php echo base_url(); ?>public/js/main.js"></script>
 
 <script>
-	var data = [];
-	$('#location').change(function () {
-		data['location'] = $(this).find('option:selected').text();
-		changeObject(data);
-	});
-	$('#option-item').change(function () {
-		data['option-item'] = $(this).find('option:selected').text();
-		changeObject(data);
-	});
-	$('input:radio[name=code]').change(function () {
-		data['code'] = $(this).val();
-		changeObject(data);
-	});
-	$('input:radio[name=isps]').change(function () {
-		data['isps'] = $(this).val();
-		changeObject(data);
-	});
-	$('#plan-name').on('input',function () {
-		data['plan-name'] = $(this).val();
-		changeObject(data);
-	});
-	$('#ipaddress').on('input',function () {
-		data['ipaddress'] = $(this).val();
-		changeObject(data);
-	});
-	function changeObject(data) {
-		$('#title-plan-end').text(data['plan-name']);
-		$('#refix-end').text(data['code'] + ', ' + data['option-item'] + ', ' + data['isps'] + ', ' + data['location'] );
-	}
+	$(document).ready(function () {
+		var data = [];
+		var ipInput = $('#ip').ipInput();
+		$('#btn-next').click(function () {
+			$('#ipaddress').val(ipInput.getIp());
+			var model = validateform();
+			console.log(model);
+			if(!model['error']){
+				$('#formsubmit').submit();
+			}else{
+				alert(model['message'].join('\n'));
+			}
+		});
+		function validateform() {
+			var model = [];
+			model['error'] = false;
+			model['message'] = [];
+			if(data['code'] === undefined || data['code'] === ''){
+				model['error'] = true;
+				model['message'].push('Code is empty');
+			}if($('#ipaddress').val() === undefined || $('#ipaddress').val() === ''){
+				model['error'] = true;
+				model['message'].push('Ip address is empty');
+			}if($('#date-active').val() === undefined || $('#date-active').val() === ''){
+				model['error'] = true;
+				model['message'].push('Date active is empty');
+			}
+			return model;
+		}
+		$('#location').change(function () {
+			data['location'] = $(this).find('option:selected').text();
+			changeObject(data);
+		});
+		$('#option-item').change(function () {
+			data['option-item'] = $(this).find('option:selected').text();
+			changeObject(data);
+		});
+		$('input:radio[name=code]').change(function () {
+			data['code'] = $(this).val();
+			changeObject(data);
+		});
+		$('input:radio[name=isps]').change(function () {
+			data['isps'] = $(this).val();
+			changeObject(data);
+		});
+		$('#plan-name').on('input',function () {
+			data['plan-name'] = $(this).val();
+			changeObject(data);
+		});
+		$('#ipaddress').on('input',function () {
+			data['ipaddress'] = $(this).val();
+			changeObject(data);
+		});
+		function changeObject(data) {
+			$('#title-plan-end').text(data['plan-name']);
+			$('#refix-end').text(data['code'] + ', ' + data['option-item'] + ', ' + data['isps'] + ', ' + data['location'] );
+		}
+	})
+
 </script>
 
 </body>

@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- Main CSS-->
 	<link href="<?php echo base_url(); ?>public/css/theme.css" rel="stylesheet" media="all">
-
+	<link rel="stylesheet" href="<?php echo base_url(); ?>public/src/ipInput.css">
 </head>
 
 <body class="animsition">
@@ -62,11 +62,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<li class="has-sub">
 						<a class="js-arrow" href="#">
 							<i class="fas fa-tachometer-alt"></i>DASHBOARD</a>
-						<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-							<li>
-								<a href="index.html">Dashboard 1</a>
-							</li>
-						</ul>
 					</li>
 					<li>
 						<a href="chart.html">
@@ -99,11 +94,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<li class="active has-sub">
 						<a class="js-arrow" href="#">
 							<i class="fas fa-tachometer-alt"></i>DASHBOARD</a>
-						<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-							<li>
-								<a href="index.html">Dashboard 1</a>
-							</li>
-						</ul>
 					</li>
 					<li>
 						<a href="/sdx-demo/page-one">
@@ -138,77 +128,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</form>
 						<div class="header-button">
 							<div class="noti-wrap">
-								<div class="noti__item js-item-menu">
-									<i class="zmdi zmdi-comment-more"></i>
-									<span class="quantity">1</span>
-									<div class="mess-dropdown js-dropdown">
-										<div class="mess__title">
-											<p>You have 2 news message</p>
-										</div>
-										<div class="mess__item">
-											<div class="image img-cir img-40">
-												<img src="<?php echo base_url(); ?>public/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
-											</div>
-											<div class="content">
-												<h6>Michelle Moreno</h6>
-												<p>Have sent a photo</p>
-												<span class="time">3 min ago</span>
-											</div>
-										</div>
-										<div class="mess__item">
-											<div class="image img-cir img-40">
-												<img src="<?php echo base_url(); ?>public/images/icon/avatar-04.jpg" alt="Diane Myers" />
-											</div>
-											<div class="content">
-												<h6>Diane Myers</h6>
-												<p>You are now connected on message</p>
-												<span class="time">Yesterday</span>
-											</div>
-										</div>
-										<div class="mess__footer">
-											<a href="#">View all messages</a>
-										</div>
-									</div>
-								</div>
-								<div class="noti__item js-item-menu">
-									<i class="zmdi zmdi-email"></i>
-									<span class="quantity">1</span>
-									<div class="email-dropdown js-dropdown">
-										<div class="email__title">
-											<p>You have 3 New Emails</p>
-										</div>
-										<div class="email__item">
-											<div class="image img-cir img-40">
-												<img src="<?php echo base_url(); ?>public/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
-											</div>
-											<div class="content">
-												<p>Meeting about new dashboard...</p>
-												<span>Cynthia Harvey, 3 min ago</span>
-											</div>
-										</div>
-										<div class="email__item">
-											<div class="image img-cir img-40">
-												<img src="<?php echo base_url(); ?>public/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
-											</div>
-											<div class="content">
-												<p>Meeting about new dashboard...</p>
-												<span>Cynthia Harvey, Yesterday</span>
-											</div>
-										</div>
-										<div class="email__item">
-											<div class="image img-cir img-40">
-												<img src="<?php echo base_url(); ?>public/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
-											</div>
-											<div class="content">
-												<p>Meeting about new dashboard...</p>
-												<span>Cynthia Harvey, April 12,,2018</span>
-											</div>
-										</div>
-										<div class="email__footer">
-											<a href="#">See all emails</a>
-										</div>
-									</div>
-								</div>
 								<div class="noti__item js-item-menu">
 									<i class="zmdi zmdi-notifications"></i>
 									<span class="quantity">3</span>
@@ -255,7 +174,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<img src="<?php echo base_url(); ?>public/images/icon/avatar-01.jpg" alt="John Doe" />
 									</div>
 									<div class="content">
-										<a class="js-acc-btn" href="#">john doe</a>
+										<a class="js-acc-btn" href="#">Ban Vien</a>
 									</div>
 									<div class="account-dropdown js-dropdown">
 										<div class="info clearfix">
@@ -266,9 +185,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</div>
 											<div class="content">
 												<h5 class="name">
-													<a href="#">john doe</a>
+													<a href="#">Ban Vien</a>
 												</h5>
-												<span class="email">johndoe@example.com</span>
+												<span class="email">banvien@banvien.com</span>
 											</div>
 										</div>
 										<div class="account-dropdown__body">
@@ -305,59 +224,69 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="overview-wrap">
-								<h2 class="title-1">overview</h2>
-								<a class="au-btn au-btn-icon au-btn--blue" href="/sdx-demo/data-pack">
-									<i class="zmdi zmdi-plus"></i>add plan</a>
+							<div class="message">
+								<?php
+								if($this->session->flashdata('message')) echo '<div class="alert alert-success" >'.$this->session->flashdata('message').'</div>';
+								?>
+							</div>
+							<div class="card">
+								<div class="card-header">
+									<strong class="card-title" v-if="headerText">Plans</strong>
+									<button class="au-btn au-btn-icon au-btn--blue" data-toggle="modal" data-target="#mediumModal">
+										<i class="zmdi zmdi-plus"></i>add plan</button>
+								</div>
+								<div class="card-body">
+									<div class="row m-t-25">
+										<div class="items container">
+											<div class="item">
+												<div class="btn-down"><i class="zmdi zmdi-chevron-down"></i></div>
+												<div class="row item-content">
+													<div class="col-md-1 item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
+													<div class="col-md-8">
+														<div class="title">HANOI CAMPUS</div>
+														<div class="des">Many of our components require the use of JavaScript to function.</div>
+														<a href="" class="connection">1 connection added</a>
+													</div>
+													<div class="col-md-3 btn-conn-del">
+														<a href="#"><i class="zmdi zmdi-playlist-plus"></i>Connection</a>
+														<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<div class="btn-down"><i class="zmdi zmdi-chevron-down"></i></div>
+												<div class="row item-content">
+													<div class="col-md-1 item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
+													<div class="col-md-8">
+														<div class="title">HANOI CAMPUS</div>
+														<div class="des">Many of our components require the use of JavaScript to function.</div>
+														<a href="" class="connection">1 connection added</a>
+													</div>
+													<div class="col-md-3 btn-conn-del">
+														<a href="#"><i class="zmdi zmdi-playlist-plus"></i>Connection</a>
+														<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
+													</div>
+												</div>
+												<div class="sub-items">
+													<div class="sub-item-content col-md-11">
+														<div class="item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
+														<div class="item-content-center">
+															<div class="title">HANOI CAMPUS</div>
+															<div class="des">Many of our components require the use of JavaScript to function.</div>
+														</div>
+														<div class="btn-conn-del">
+															<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row m-t-25">
-						<div class="items container">
-							<div class="item">
-								<div class="btn-down"><i class="zmdi zmdi-chevron-down"></i></div>
-								<div class="row item-content">
-									<div class="col-md-1 item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
-									<div class="col-md-8">
-										<div class="title">HANOI CAMPUS</div>
-										<div class="des">Many of our components require the use of JavaScript to function.</div>
-										<a href="" class="connection">1 connection added</a>
-									</div>
-									<div class="col-md-3 btn-conn-del">
-										<a href="#"><i class="zmdi zmdi-playlist-plus"></i>Connection</a>
-										<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="btn-down"><i class="zmdi zmdi-chevron-down"></i></div>
-								<div class="row item-content">
-									<div class="col-md-1 item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
-									<div class="col-md-8">
-										<div class="title">HANOI CAMPUS</div>
-										<div class="des">Many of our components require the use of JavaScript to function.</div>
-										<a href="" class="connection">1 connection added</a>
-									</div>
-									<div class="col-md-3 btn-conn-del">
-										<a href="#"><i class="zmdi zmdi-playlist-plus"></i>Connection</a>
-										<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
-									</div>
-								</div>
-								<div class="sub-items">
-									<div class="sub-item-content col-md-11">
-										<div class="item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
-										<div class="item-content-center">
-											<div class="title">HANOI CAMPUS</div>
-											<div class="des">Many of our components require the use of JavaScript to function.</div>
-										</div>
-										<div class="btn-conn-del">
-											<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+
 
 					<div class="row">
 						<div class="col-md-12">
@@ -373,8 +302,174 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- END PAGE CONTAINER-->
 	</div>
 
+	<!-- modal medium -->
+	<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="mediumModalLabel">ADD NEW PLANS</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form action="<?php echo base_url(); ?>data-pack/add" method="post" class="row m-t-25" id="formsubmit">
+							<input type="text" hidden="hidden" name="crudaction" value="insert">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-6">
+										<label for="location" class="control-label mb-1">Location</label>
+										<select name="location" id="location" class="form-control" disabled = "disabled">
+											<option value="0">Please select</option>
+											<option value="1">HCM</option>
+											<option value="2">Hà Nội</option>
+											<option value="3">Bình Phước</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<label for="form-check" class="control-label mb-1">ISP</label>
+										<div class="wrap-isps col-md-12 row">
+											<div class="form-check" >
+												<div class="radio">
+													<label for="Viettel.5">Viettel</label>
+													<input type="radio" checked id="Viettel" name="isps" value="Viettel" disabled = "disabled">
+												</div>
+												<div class="radio">
+													<label for="FPT">FPT</label>
+													<input type="radio" id="FPT" name="isps" value="FPT" disabled = "disabled">
+												</div>
+												<div class="radio">
+													<label for="VNPT">VNPT</label>
+													<input type="radio" id="VNPT" name="isps" value="VNPT" disabled = "disabled">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 container">
+										<label for="form-check" class="control-label mb-1">Deicated Bandwidth</label>
+										<div class="wrap-codes col-md-12 row">
+											<div class="col-md-6">
+												<div class="form-check">
+													<div class="radio">
+														<label for="code0.5">1/1Mbps</label>
+														<input type="radio" id="code0.5" name="code" value="1/1Mbps">
+													</div>
+													<div class="radio">
+														<label for="code0.5">2/2Mbps</label>
+														<input type="radio" id="code0.6" name="code" value="2/2Mbps">
+													</div>
+													<div class="radio">
+														<label for="code0.5">3/3Mbps</label>
+														<input type="radio" id="code0.7" name="code" value="3/3Mbps">
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-check">
+													<div class="radio">
+														<label for="code1.5">4/4Mbps</label>
+														<input type="radio" id="code1.5" name="code" value="4/4Mbps">
+													</div>
+													<div class="radio">
+														<label for="code1.5">5/5Mbps</label>
+														<input type="radio" id="code1.6" name="code" value="5/5Mbps">
+													</div>
+													<div class="radio">
+														<label for="code1.5">6/6Mbps</label>
+														<input type="radio" id="code1.7" name="code" value="6/6Mbps">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="plan-name" class="control-label mb-1">Plan name</label>
+											<input id="plan-name" disabled = "disabled" placeholder="Enter plan name" name="cc-number" type="tel" class="form-control cc-number identified visa" value="" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+											<span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group ">
+													<label for="date-active" class="control-label mb-1">Date Active</label>
+													<input id="date-active" name="date-active"
+														   type="date" class="form-control cc-number identified visa">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="option-item" class="control-label mb-1">Choose item</label>
+													<select name="option-item" id="option-item" class="form-control" disabled = "disabled">
+														<option value="0">Please select</option>
+														<option value="1">3 Months</option>
+														<option value="2">6 Months</option>
+														<option value="3">12 Months</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label for="ipaddress" class="control-label mb-1">Ip</label>
+											<div id="ip"></div>
+											<input id="ipaddress" name="ipaddress" pattern="" hidden="hidden"
+												   type="tel" >
+											<span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+										</div>
+
+									</div>
+									<div class="col-md-2">
+
+									</div>
+
+								</div>
+								<div class="row plan-info">
+									<div class="col-md-1 plan-info-icon">
+										<i class="zmdi zmdi-view-agenda"></i>
+									</div>
+									<div class="col-md-10">
+										<h5 id="title-plan-end">Plan name</h5> <p id="refix-end">unknown</p>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+						<div class="col-md-8 ">
+							<div class="monthly-rate">
+								<h5>MONTHLY RATE: 420.00 USD</h5> <span>(Price Excludes Tax)</span>
+							</div>
+						</div>
+						<div class="col-md-4 btn-next-cancel">
+							<button class="btn btn-primary" id="btn-next">
+								NEXT
+							</button>
+							<button class="btn btn-warning" data-dismiss="modal" id="btn-cencel">
+								CANCEL
+							</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end modal medium -->
 </div>
 <style>
+	strong {
+		font-size: 2em;
+	}
 	.js-scrollbar1{
 		background-color: #003B74;
 	}
@@ -436,14 +531,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		float: right;
 		border-radius: 10px;
 	}
-	.menu-sidebar {
-		width: 200px;
+	.card-header button{
+		float: right;
 	}
-	.page-container {
-		padding-left: 200px;
+	.ip-input-container {
+		width: 100%;
 	}
-	.header-desktop {
-		left: 200px;
+	.ip-input-container .ip-input-item {
+		width: 24%;
+		font-size: 15px;
+	}
+	.plan-info{
+		padding: 15px 0;
+	}
+	.plan-info-icon i{
+		font-size: 2.5em;
+	}
+	.monthly-rate h5{
+		display: inline-block;
+		color: #00ad5f;
+	}
+	.wrap-codes, .wrap-isps{
+		border: 2px solid grey;
+	}
+	.wrap-codes.row {
+		margin-left: 0;
+	}
+	.wrap-isps.row{
+		margin-left: 0;
+	}
+	.btn-next-cancel #btn-next, #btn-cencel{
+		float: right;
+		margin-left: 10px;
+	}
+	.form-check{
+		text-align: right;
+		 }
+	.form-control{
+		font-size: 0.83em;
 	}
 </style>
 <!-- Jquery JS-->
@@ -467,9 +592,72 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>public/vendor/select2/select2.min.js">
 </script>
 
+<script src="<?php echo base_url(); ?>public/src/ipInput.js"></script>
 <!-- Main JS-->
 <script src="<?php echo base_url(); ?>public/js/main.js"></script>
 
+<script>
+	$(document).ready(function () {
+		var data = [];
+		var ipInput = $('#ip').ipInput();
+		$('#btn-next').click(function () {
+			$('#ipaddress').val(ipInput.getIp());
+			var model = validateform();
+			console.log(model);
+			if(!model['error']){
+				$('#formsubmit').submit();
+			}else{
+				alert(model['message'].join('\n'));
+			}
+		});
+		function validateform() {
+			var model = [];
+			model['error'] = false;
+			model['message'] = [];
+			if(data['code'] === undefined || data['code'] === ''){
+				model['error'] = true;
+				model['message'].push('Code is empty');
+			}if($('#ipaddress').val() === undefined || $('#ipaddress').val() === ''){
+				model['error'] = true;
+				model['message'].push('Ip address is empty');
+			}if($('#date-active').val() === undefined || $('#date-active').val() === ''){
+				model['error'] = true;
+				model['message'].push('Date active is empty');
+			}
+			return model;
+		}
+		$('#location').change(function () {
+			data['location'] = $(this).find('option:selected').text();
+			changeObject(data);
+		});
+		$('#option-item').change(function () {
+			data['option-item'] = $(this).find('option:selected').text();
+			changeObject(data);
+		});
+		$('input:radio[name=code]').change(function () {
+			data['code'] = $(this).val();
+			changeObject(data);
+		});
+		$('input:radio[name=isps]').change(function () {
+			data['isps'] = $(this).val();
+			changeObject(data);
+		});
+		$('#plan-name').on('input',function () {
+			data['plan-name'] = $(this).val();
+			changeObject(data);
+		});
+		$('#ipaddress').on('input',function () {
+			data['ipaddress'] = $(this).val();
+			changeObject(data);
+		});
+		function changeObject(data) {
+			$('#title-plan-end').text(data['plan-name']);
+			$('#refix-end').text(data['code']);
+			// $('#refix-end').text(data['code'] + ', ' + data['option-item'] + ', ' + data['isps'] + ', ' + data['location'] );
+		}
+	})
+
+</script>
 </body>
 
 </html>

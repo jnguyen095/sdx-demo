@@ -17,7 +17,8 @@ class DataPack_Model extends CI_Model
 		$newdata = array(
 			'code' => $data['code'],
 			'ipaddress' => $data['ipaddress'],
-			'createddate' => date('Y-m-d H:i:s')
+			'createddate' => date('Y-m-d H:i:s'),
+			'activedate' => $data['date-active']
 		);
 		$this->db->insert('datapack', $newdata);
 	}
