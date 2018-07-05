@@ -4,8 +4,8 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST}  \.
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-RewriteCond %{HTTP_HOST} ^www\.tindatdai\.com$
-RewriteRule ^/?$ "https\:\/\/tindatdai\.com\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.ec2-34-224-173-228.compute-1.amazonaws\.com$
+RewriteRule ^/?$ "https\:\/\/ec2-34-224-173-228.compute-1.amazonaws\.com\/" [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond $1 !^(index\.php|images|robots\.txt)
