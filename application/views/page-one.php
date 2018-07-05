@@ -64,15 +64,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<i class="fas fa-tachometer-alt"></i>DASHBOARD</a>
 					</li>
 					<li>
-						<a href="chart.html">
+						<a href="#">
 							<i class="fas fa-chart-bar"></i>PLANS</a>
 					</li>
 					<li>
-						<a href="table.html">
+						<a href="#">
 							<i class="fas fa-table"></i>CONNECTION</a>
 					</li>
 					<li>
-						<a href="form.html">
+						<a href="#">
 							<i class="far fa-check-square"></i>HISTORY</a>
 					</li>
 				</ul>
@@ -91,20 +91,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="menu-sidebar__content js-scrollbar1">
 			<nav class="navbar-sidebar">
 				<ul class="list-unstyled navbar__list">
-					<li class="active has-sub">
+					<li >
 						<a class="js-arrow" href="#">
 							<i class="fas fa-tachometer-alt"></i>DASHBOARD</a>
 					</li>
-					<li>
-						<a href="/sdx-demo/page-one">
+					<li class="active-navbar">
+						<a href="#">
 							<i class="fas fa-chart-bar"></i>PLANS</a>
 					</li>
 					<li>
-						<a href="table.html">
+						<a href="#">
 							<i class="fas fa-table"></i>CONNECTION</a>
 					</li>
 					<li>
-						<a href="form.html">
+						<a href="#">
 							<i class="far fa-check-square"></i>HISTORY</a>
 					</li>
 				</ul>
@@ -236,58 +236,122 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<i class="zmdi zmdi-plus"></i>add plan</button>
 								</div>
 								<div class="card-body">
-									<div class="row m-t-25">
-										<div class="items container">
-											<div class="item">
-												<div class="btn-down"><i class="zmdi zmdi-chevron-down"></i></div>
-												<div class="row item-content">
-													<div class="col-md-1 item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
-													<div class="col-md-8">
-														<div class="title">HANOI CAMPUS</div>
-														<div class="des">Many of our components require the use of JavaScript to function.</div>
-														<a href="" class="connection">1 connection added</a>
+									<ul>
+										<li class="item">
+												<div class="btn-angle-down"><i class="fa fa-angle-down"></i></div>
+												<div class="div-alt-content none">
+													<div class="item-icon-none">
+														<img src="https://www.computerhouse.com/wp-content/uploads/2017/04/servers-icon.png" alt="">
 													</div>
-													<div class="col-md-3 btn-conn-del">
-														<a href="#"><i class="zmdi zmdi-playlist-plus"></i>Connection</a>
-														<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
+													<div class="item-text">
+														<div class="plan-name">HA NOI CAMPUS</div>
+														<div class="plan-info-txt">Insert QoS bash script with input params from plan data
+														</div>
+														<div class="connction-added">1 connection added</div>
 													</div>
+													<div class="item-btn">
+														<a href=""><i class="fa fa-plus-square"></i>Connection</a>
+														<a href=""><i class="fa fa-trash"></i>Delete</a>
+													</div>
+												</div>
+												<ul class="item-sub-plan">
+													<li>
+														<div class="div-alt">
+															<div class="div-alt-content">
+																<div class="item-icon">
+																	<img src="https://www.timg.com/wp-content/uploads/2015/12/cloud-connect-icon.png" alt="">
+																</div>
+																<div class="item-text">
+																	<div class="plan-name">S1 SYDNEY</div>
+																	<div class="plan-info-txt">Insert QoS bash script with input params from plan data
+																	</div>
+
+																</div>
+																<div class="item-btn">
+																	<a href=""><i class="fa fa-trash"></i>Delete</a>
+																</div>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="div-alt">
+															<div class="div-alt-content">
+																<div class="item-icon">
+																	<img src="https://www.timg.com/wp-content/uploads/2015/12/cloud-connect-icon.png" alt="">
+																</div>
+																<div class="item-text">
+																	<div class="plan-name">S2 SYDNEY</div>
+																	<div class="plan-info-txt">Insert QoS bash script with input params from plan data
+																	</div>
+																</div>
+																<div class="item-btn">
+																	<a href=""><i class="fa fa-trash"></i>Delete</a>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ul>
+										</li>
+										<li class="item">
+											<div class="btn-angle-down"><i class="fa fa-angle-down"></i></div>
+											<div class="div-alt-content none">
+												<div class="item-icon-none">
+													<img src="https://www.computerhouse.com/wp-content/uploads/2017/04/servers-icon.png" alt="">
+												</div>
+												<div class="item-text">
+													<div class="plan-name">BINH PHUOC CAMPUS</div>
+													<div class="plan-info-txt">Insert QoS bash script with input params from plan data
+													</div>
+													<div class="connction-added">1 connection added</div>
+												</div>
+												<div class="item-btn">
+													<a href=""><i class="fa fa-plus-square"></i>Connection</a>
+													<a href=""><i class="fa fa-trash"></i>Delete</a>
 												</div>
 											</div>
-											<div class="item">
-												<div class="btn-down"><i class="zmdi zmdi-chevron-down"></i></div>
-												<div class="row item-content">
-													<div class="col-md-1 item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
-													<div class="col-md-8">
-														<div class="title">HANOI CAMPUS</div>
-														<div class="des">Many of our components require the use of JavaScript to function.</div>
-														<a href="" class="connection">1 connection added</a>
-													</div>
-													<div class="col-md-3 btn-conn-del">
-														<a href="#"><i class="zmdi zmdi-playlist-plus"></i>Connection</a>
-														<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
-													</div>
+										</li>
+										<li class="item">
+											<div class="btn-angle-down"><i class="fa fa-angle-down"></i></div>
+											<div class="div-alt-content none">
+												<div class="item-icon-none">
+													<img src="https://www.computerhouse.com/wp-content/uploads/2017/04/servers-icon.png" alt="">
 												</div>
-												<div class="sub-items">
-													<div class="sub-item-content col-md-11">
-														<div class="item-content-icon-left"><i class="zmdi zmdi-view-agenda"></i></div>
-														<div class="item-content-center">
-															<div class="title">HANOI CAMPUS</div>
-															<div class="des">Many of our components require the use of JavaScript to function.</div>
-														</div>
-														<div class="btn-conn-del">
-															<a href="#"><i class="zmdi zmdi-delete"></i>Delete</a>
-														</div>
+												<div class="item-text">
+													<div class="plan-name">HO CHI MINH CAMPUS</div>
+													<div class="plan-info-txt">Insert QoS bash script with input params from plan data
 													</div>
+													<div class="connction-added">1 connection added</div>
+												</div>
+												<div class="item-btn">
+													<a href=""><i class="fa fa-plus-square"></i>Connection</a>
+													<a href=""><i class="fa fa-trash"></i>Delete</a>
 												</div>
 											</div>
-										</div>
-									</div>
+											<ul class="item-sub-plan">
+												<li>
+													<div class="div-alt">
+														<div class="div-alt-content">
+															<div class="item-icon">
+																<img src="https://www.timg.com/wp-content/uploads/2015/12/cloud-connect-icon.png" alt="">
+															</div>
+															<div class="item-text">
+																<div class="plan-name">T1 SYDNEY</div>
+																<div class="plan-info-txt">Insert QoS bash script with input params from plan data
+																</div>
+															</div>
+															<div class="item-btn">
+																<a href=""><i class="fa fa-trash"></i>Delete</a>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
-
-
 					<div class="row">
 						<div class="col-md-12">
 							<div class="copyright">
@@ -314,7 +378,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form action="<?php echo base_url(); ?>data-pack/add" method="post" class="row m-t-25" id="formsubmit">
+						<form action="<?php echo base_url(); ?>" method="post" class="row m-t-25" id="formsubmit">
 							<input type="text" hidden="hidden" name="crudaction" value="insert">
 							<div class="container-fluid">
 								<div class="row">
@@ -334,16 +398,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="wrap-isps col-md-12 row">
 											<div class="form-check" >
 												<div class="radio">
-													<label for="Viettel.5">Viettel</label>
+													<img width="40%" src="http://congtrinhviettel.com.vn/images/viettel.png" alt="">
+													<span>Viettel</span>
 													<input type="radio" checked id="Viettel" name="isps" value="Viettel" disabled = "disabled">
+												</span>
 												</div>
 												<div class="radio">
-													<label for="FPT">FPT</label>
+													<img width="40%" src="https://fpt.vn/assets/frontend/img/icon/logo.png">
+													<span>FPT Telecom</span>
 													<input type="radio" id="FPT" name="isps" value="FPT" disabled = "disabled">
 												</div>
 												<div class="radio">
-													<label for="VNPT">VNPT</label>
-													<input type="radio" id="VNPT" name="isps" value="VNPT" disabled = "disabled">
+													<img width="40%" src="http://nhasachgiaoduc.vn/images/hinhanhchung/brasol.vn-logo-mobifone-brasol.vn-logo-mobifone-mobifone-logo.svg-.png">
+													<span>Mobifone</span>
+													<input type="radio" id="Mobifone" name="isps" value="Mobifone" disabled = "disabled">
 												</div>
 											</div>
 										</div>
@@ -467,6 +535,116 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- end modal medium -->
 </div>
 <style>
+	.item {
+		padding: 10px 0;
+	}
+	.item > .btn-angle-down	{
+		position: absolute;
+		right: 45px;
+		z-index: 100;
+	}
+	ul {
+		list-style-type: none;
+	}
+	.item ul {
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+		position: relative;
+	}
+	.item li {
+		list-style-type: none;
+		border-left: 2px solid #00b5e9;
+		margin-left: 4%;
+	}
+	.item li .div-alt {
+		padding: 0.2em 0.5em 0.2em 3em;
+		position: relative;
+	}
+	.item li .div-alt::before {
+		content:'';
+		position: absolute;
+		top: 0;
+		left: -2px;
+		bottom: 50%;
+		width: 3.2em;
+		border: 2px solid #00b5e9;
+		border-top: 0 none transparent;
+		border-right: 0 none transparent;
+	}
+	.item ul > li:last-child {
+		border-left: 2px solid transparent;
+	}
+	.div-alt-content{
+		border: 1px solid #00b5e9;
+		border-radius: 5px;
+		display: flex;
+		background-color: white;
+	}
+	.div-alt-content.none{
+		border: 0;
+		display: flex;
+		background-color: transparent;
+		position: relative;
+	}
+
+	.div-alt-content .item-icon-none{
+		padding: 10px 1px;
+		text-align: center;
+		flex: 0.4;
+		position: relative;
+	}
+	.div-alt-content .item-icon-none img{
+		width: 50px;
+	}
+	.div-alt-content .item-icon-none.active-tree::before {
+		content:'';
+		position: absolute;
+		top: 70%;
+		bottom: 0;
+		left:40px;
+		height: 3em;
+		border: 2px solid #00b5e9;
+		border-top: 0 none transparent;
+		border-right: 0 none transparent;
+		border-bottom: 0 none transparent;
+	}
+	.div-alt-content .item-icon{
+		padding: 10px 1px;
+		text-align: center;
+		flex: 0.4;
+	}
+	.div-alt-content .item-icon img{
+		width: 40px;
+	}
+	.div-alt-content .item-text{
+		padding: 10px;
+		flex: 3;
+	}
+	.div-alt-content .item-text .plan-name{
+		font-weight: bold;
+	}
+	.div-alt-content .item-text .plan-info-txt{
+		font-size: 12px;
+	}
+	.div-alt-content .item-text .connction-added{
+		font-size: 12px;
+		color: #00a2e3;
+	}
+	.div-alt-content .item-btn{
+		padding: 20px;
+		flex: 1.5;
+	}
+	.div-alt-content .item-btn i{
+		padding: 5px;
+	}
+	.div-alt .div-alt-content .item-btn a{
+		padding-left: 90px;
+	}
+	.item-sub-plan{
+		display: none;
+	}
+
 	strong {
 		font-size: 2em;
 	}
@@ -552,7 +730,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		color: #00ad5f;
 	}
 	.wrap-codes, .wrap-isps{
-		border: 2px solid grey;
+		border: 1px solid grey;
 	}
 	.wrap-codes.row {
 		margin-left: 0;
@@ -565,10 +743,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin-left: 10px;
 	}
 	.form-check{
-		text-align: right;
-		 }
+		padding-left : 0;
+		vertical-align: middle;
+	}
+	.form-check img{
+		margin-right : 15px;
+	}
+	.form-check input[type="radio"]{
+		margin: 5px;
+		float: right;
+	}
+	.form-check .radio{
+		vertical-align: middle;
+		 padding: 5px;
+		border-bottom: 1px solid grey;
+	}
+	.form-check .radio:last-child{
+		border-bottom: 0;
+	}
 	.form-control{
 		font-size: 0.83em;
+	}
+	.active-navbar{
+		background-color: #00b5e9;
 	}
 </style>
 <!-- Jquery JS-->
@@ -655,6 +852,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('#refix-end').text(data['code']);
 			// $('#refix-end').text(data['code'] + ', ' + data['option-item'] + ', ' + data['isps'] + ', ' + data['location'] );
 		}
+		$('.btn-angle-down').click(function () {
+			var parrent = $(this).parent();
+			var icon = $(this).find('i');
+			if(parrent.find('.item-sub-plan').length > 0){
+				var img_none = parrent.find('.item-icon-none');
+				if(img_none.hasClass('active-tree')){
+					img_none.removeClass('active-tree');
+					icon.removeClass('fa-angle-up');
+					icon.addClass('fa-angle-down');
+				}else{
+					img_none.addClass('active-tree');
+					icon.addClass('fa-angle-up');
+					icon.removeClass('fa-angle-down')
+				}
+				parrent.find('.item-sub-plan').toggle();
+			}
+			return;
+		});
 	})
 
 </script>
