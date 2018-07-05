@@ -314,7 +314,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form action="<?php echo base_url(); ?>data-pack/add" method="post" class="row m-t-25" id="formsubmit">
+						<form action="<?php echo base_url(); ?>" method="post" class="row m-t-25" id="formsubmit">
 							<input type="text" hidden="hidden" name="crudaction" value="insert">
 							<div class="container-fluid">
 								<div class="row">
