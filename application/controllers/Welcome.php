@@ -19,8 +19,24 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function home()
+	function __construct()
 	{
+		parent::__construct();
+		$this->load->helper('form');
+		$this->load->model('DataPack_Model');
+	}
+
+	public function index()
+	{
+		$crudaction = $this->input->post('crudaction');
+		$data = [];
+		if($crudaction != null && $crudaction == "insert"){
+			$data['code'] = $this->input->post('code');
+			$data['ipaddress'] = $this->input->post('ipaddress');
+			$data['date-active'] = date('Y-m-d H:i:s',strtotime($this->input->post('date-active').date('H:i:s')));
+			$this->DataPack_Model->save($data);
+			$this->session->set_flashdata('message','Add plan seccuess!');
+		}
 		$this->load->view('page-one');
 	}
 
