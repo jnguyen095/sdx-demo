@@ -296,6 +296,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	body{
 		overflow-x: hidden;
 	}
+	table{
+		margin: 0 auto;
+	}
 	#Table_login input[type="text"] {
 		width: 407px;
 		height: 42px;
