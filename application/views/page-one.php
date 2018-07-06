@@ -465,14 +465,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 									<div class="col-md-6">
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-8">
 												<div class="form-group ">
 													<label for="date-active" class="control-label mb-1">Date Active</label>
 													<input id="date-active" name="date-active"
-														   type="date" class="form-control cc-number identified visa">
+														   type="datetime-local" class="form-control cc-number identified visa">
 												</div>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-4">
 												<div class="form-group">
 													<label for="option-item" class="control-label mb-1">Choose item</label>
 													<select name="option-item" id="option-item" class="form-control" disabled = "disabled">
