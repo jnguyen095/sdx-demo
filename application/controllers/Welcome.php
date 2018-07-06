@@ -37,7 +37,7 @@ class Welcome extends CI_Controller {
 			$this->DataPack_Model->save($data);
 			$this->session->set_flashdata('message','Add plan seccuess!');
 		}
-		$this->load->view('page-one');
+		$this->load->view('page-three');
 	}
 
 
