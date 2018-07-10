@@ -36,8 +36,17 @@ class Welcome extends CI_Controller {
 			$data['date-active'] = date('Y-m-d H:i:s',strtotime($this->input->post('date-active')));
 			$this->DataPack_Model->save($data);
 			$this->session->set_flashdata('message','Add plan seccuess!');
+			$data['hidden'] = false;
+			$this->load->view('page-three',$data);
+		}else{
+			$data['hidden'] = true;
+			$this->load->view('page-three',$data);
 		}
-		$this->load->view('page-three');
+	}
+	public function getdatapacks(){
+		$ipaddress = $this->input->get('ip');
+		$data = $this->DataPack_Model->getallbyip($ipaddress);
+		echo json_encode($data);
 	}
 
 

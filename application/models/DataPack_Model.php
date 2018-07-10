@@ -22,4 +22,14 @@ class DataPack_Model extends CI_Model
 		);
 		$this->db->insert('datapack', $newdata);
 	}
+	function getallbyip($ip){
+		$this->db->select('*');
+		$this->db->from('datapack');
+		$this->db->where('ipaddress', $ip);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function  getall(){
+		return $this->db->get('datapack')->result();
+	}
 }
