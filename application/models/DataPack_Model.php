@@ -32,4 +32,7 @@ class DataPack_Model extends CI_Model
 	function  getall(){
 		return $this->db->get('datapack')->result();
 	}
+	function deleteById($id){
+		$this->db->delete('datapack', array('id' => $id));
+	}
 }

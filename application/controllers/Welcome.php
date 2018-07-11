@@ -37,8 +37,10 @@ class Welcome extends CI_Controller {
 			$this->DataPack_Model->save($data);
 			$this->session->set_flashdata('message','Add plan seccuess!');
 			$data['hidden'] = false;
+			$data['dashboard'] = true;
 			$this->load->view('page-three',$data);
 		}else{
+			$data['dashboard'] = false;
 			$data['hidden'] = true;
 			$this->load->view('page-three',$data);
 		}
@@ -48,6 +50,12 @@ class Welcome extends CI_Controller {
 		$data = $this->DataPack_Model->getallbyip($ipaddress);
 		echo json_encode($data);
 	}
-
+	public function delete(){
+		$id = $this->input->get('id');
+		$data = $this->DataPack_Model->deleteById($id);
+		$data['hidden'] = false;
+		$data['dashboard'] = true;
+		$this->load->view('page-three',$data);
+	}
 
 }

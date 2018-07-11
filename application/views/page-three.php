@@ -214,7 +214,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- MAIN CONTENT-->
 		<div class="main-content">
 			<div class="section__content section__content--p30">
-				<div class="dashboard-view">
+				<div class="dashboard-view" <?php if($dashboard) echo "style=\"display: none;\"";?>>
 					<table id="Table_01" width="1159" height="2035" border="0" cellpadding="0" cellspacing="0">
 						<tr>
 							<td colspan="3">
@@ -244,7 +244,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</tr>
 					</table>
 				</div>
-				<div class="container-fluid" id="view-plan" style="display:none;">
+				<div class="container-fluid" id="view-plan" <?php if(!$dashboard) echo "style=\"display: none;\"";?>>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="message">
@@ -346,7 +346,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<div class="connction-added">1 connection added</div>
 												</div>
 												<div class="item-btn">
-													<a  href="javascript:void(0)" data-toggle="modal" data-target="#mediumModal"><img width="30px" src="<?php echo base_url(); ?>public/images/icon/plus.svg" alt="">Connection</a>
+													<a  href="javascript:void(0)" class="show-modal" data-toggle="modal" data-target="#mediumModal"><img width="30px" src="<?php echo base_url(); ?>public/images/icon/plus.svg" alt="">Connection</a>
 													<a  href="javascript:void(0)"><img width="30px" src="<?php echo base_url(); ?>public/images/icon/delete.svg" alt="">Delete</a>
 												</div>
 											</div>
@@ -895,6 +895,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var data = [];
 		var ipInput = $('#ip').ipInput();
 
+		$('.show-modal').click(function () {
+			$('#formsubmit').show();
+			$('.step0').show();
+			$('.step1').hide();
+			$('.btn-save').hide();
+			$('.view-step1').hide();
+			$('.view-step2').hide();
+		});
 		$('.step0').click(function () {
 			$('.step0').hide();
 			$('.step1').show();
@@ -1003,7 +1011,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					var info = value.code + ", " + value.ipaddress+", "+value.activedate;
 					var planInfoTxtEl = $('<div class="plan-info-txt"></div>');
 					planInfoTxtEl.text(info);
-					var itemBtnEl = $('<div class="item-btn"><a href="/delete/'+value.id+'"><i class="fa fa-trash"></i>Delete</a></div>');
+					var itemBtnEl = $('<div class="item-btn"><a href="<?php echo base_url(); ?>index.php/welcome/delete?id='+value.id+'"><i class="fa fa-trash"></i>Delete</a></div>');
 					itemTextEl.append(planNameEl);
 					itemTextEl.append(planInfoTxtEl);
 					divAltContentEl.append(itemIconEl);
