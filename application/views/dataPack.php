@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><html>
 <head>
-	<title>307035513</title>
+	<title>SUBCRIBERS</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href="<?php echo base_url(); ?>public/css/font-face.css" rel="stylesheet" media="all">
 	<link href="<?php echo base_url(); ?>public/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
