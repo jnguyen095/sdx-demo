@@ -506,7 +506,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<div class="col-md-9">
 												<div class="form-group ">
 													<label for="date-active" class="control-label mb-1">Date Active</label>
-													<input class="form-control" data-format="yyyy-MM-dd hh:mm:ss" type="datetime-local" name="date-active" id="date-active"/>
+													<input class="form-control" type="datetime-local" name="date-active" id="date-active"/>
 												</div>
 											</div>
 										</div>
@@ -988,7 +988,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var ip = $("#choose-ip").val();
 		$.ajax({
 			ty1e: "GET",
-			url: "<?php echo base_url(); ?>index.php/welcome/getdatapacks",
+			url: "<?php echo base_url(); ?>welcome/getdatapacks",
 			dataType: 'json',
 			data : {"ip" : ip},
 			success : function (res) {
