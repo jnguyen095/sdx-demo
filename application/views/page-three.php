@@ -161,10 +161,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<a href="#">
 							<img width="20px" style="margin-right: 10px;" src="<?php echo base_url(); ?>public/images/icon/history.svg">HISTORY</a>
 					</li>
-					<li>
-						<a onclick="showSubscriber(this);">
-							<img width="20px" style="margin-right: 10px;" src="<?php echo base_url(); ?>public/images/icon/subscribe.svg">SUBSCRIBERS</a>
-					</li>
+<!--					<li>-->
+<!--						<a onclick="showSubscriber(this);">-->
+<!--							<img width="20px" style="margin-right: 10px;" src="--><?php //echo base_url(); ?><!--public/images/icon/subscribe.svg">SUBSCRIBERS</a>-->
+<!--					</li>-->
 				</ul>
 			</nav>
 		</div>
@@ -873,7 +873,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$(".subscribers-view").hide();
 	}
 	$(document).ready(function () {
-		loadConnection();
+		loadConnection(true);
 		var data = [];
 		var ipInput = $('#ip').ipInput();
 
@@ -975,7 +975,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		});
 	})
 	function  showPagePlanMain() {
-		loadConnection();
+		loadConnection(false);
 		$('#Table_login').hide();
 		$('.page-wrapper').show();
 	}
@@ -989,13 +989,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			data : {"id" : $id},
 			success : function (res) {
 				var $data = res[0];
-
-				$('input[name=\"code\"][value=\"'+$data.code+'\"]').attr('checked', 'checked');
+				$('input[name=\"code\"]').removeAttr('checked').filter('[value=\"'+$data.code+'\"]').attr('checked', true);
 				$('select[name=\"ipaddress\"] > option[value=\"'+$data.ipaddress+'\"]').attr('selected', true);
 				$('#date-active').val(formatdate($data.activedate));
+				$('#mediumModal').modal('show');
+				$('#formsubmit').show();
+				$('.step0').show();
+				$('.step1').hide();
+				$('.btn-save').hide();
+				$('.view-step1').hide();
+				$('.view-step2').hide();
 			}
 		});
-		$('#mediumModal').modal('show');
 	}
 	function formatdate($date) {
 		var $str = $date.replace(" ", "T");
@@ -1037,9 +1042,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		});
 	}
-	function loadConnection(){
+	function loadConnection($bool){
 		$('#hcm-demo').empty();
-		var ip = $("#choose-ip").val();
+		if($bool){
+			ip = <?php echo "'".$this->session->userdata('ip_session')."'"?>;
+		}else{
+			ip = $("#choose-ip").val();
+		}
 		$.ajax({
 			ty1e: "GET",
 			url: "<?php echo base_url(); ?>index.php/welcome/getdatapacks",

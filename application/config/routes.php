@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['data-pack'] = 'DataPack_controller/index';
 $route['data-pack/add'] = 'DataPack_controller/dataPack';
 $route['page-one'] = 'PageOneController';
+$route['subscribers'] = 'Welcome/indexGetAll';

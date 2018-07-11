@@ -57,6 +57,7 @@ class Welcome extends CI_Controller {
 	}
 	public function getdatapacks(){
 		$ipaddress = $this->input->get('ip');
+		$this->session->set_userdata('ip_session',$ipaddress);
 		$data = $this->DataPack_Model->getallbyip($ipaddress);
 		echo json_encode($data);
 	}
@@ -75,6 +76,9 @@ class Welcome extends CI_Controller {
 	public function getall(){
 		$data = $this->DataPack_Model->getall();
 		echo json_encode($data);
+	}
+	public function indexGetAll(){
+		$this->load->view('dataPack');
 	}
 
 }
