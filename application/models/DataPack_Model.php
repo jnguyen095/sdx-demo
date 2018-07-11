@@ -35,4 +35,22 @@ class DataPack_Model extends CI_Model
 	function deleteById($id){
 		$this->db->delete('datapack', array('id' => $id));
 	}
+	function update($data){
+		$id = $data['id'];
+		$newdata = array(
+			'code' => $data['code'],
+			'ipaddress' => $data['ipaddress'],
+			'activedate' => $data['date-active']
+		);
+		$this->db->set($newdata);
+		$this->db->where('id', $id);
+		$this->db->update('datapack');
+	}
+	function getone($id){
+		$this->db->select('*');
+		$this->db->from('datapack');
+		$this->db->where('id', $id);
+		$query = $this->db->get();
+		return $query->result();
+	}
 }

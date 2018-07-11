@@ -35,10 +35,20 @@ class Welcome extends CI_Controller {
 			$data['ipaddress'] = $this->input->post('ipaddress');
 			$data['date-active'] = date('Y-m-d H:i:s',strtotime($this->input->post('date-active')));
 			$this->DataPack_Model->save($data);
-			$this->session->set_flashdata('message','Add plan seccuess!');
+			$this->session->set_flashdata('message','process connection seccuess!');
 			$data['hidden'] = false;
 			$data['dashboard'] = true;
 			$this->load->view('page-three',$data);
+		}else if($crudaction != null && $crudaction == "edit"){
+				$data['id'] = $this->input->post('id');
+				$data['code'] = $this->input->post('code');
+				$data['ipaddress'] = $this->input->post('ipaddress');
+				$data['date-active'] = date('Y-m-d H:i:s',strtotime($this->input->post('date-active')));
+				$this->DataPack_Model->update($data);
+				$this->session->set_flashdata('message','process connection seccuess!');
+				$data['hidden'] = false;
+				$data['dashboard'] = true;
+				$this->load->view('page-three',$data);
 		}else{
 			$data['dashboard'] = false;
 			$data['hidden'] = true;
@@ -56,6 +66,15 @@ class Welcome extends CI_Controller {
 		$data['hidden'] = false;
 		$data['dashboard'] = true;
 		$this->load->view('page-three',$data);
+	}
+	public function getone(){
+		$id = $this->input->get('id');
+		$data = $this->DataPack_Model->getone($id);
+		echo json_encode($data);
+	}
+	public function getall(){
+		$data = $this->DataPack_Model->getall();
+		echo json_encode($data);
 	}
 
 }

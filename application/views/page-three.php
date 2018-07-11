@@ -135,47 +135,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- End Save for Web Slices -->
 <!-- Save for Web Slices (307035939.png) -->
 <div class="page-wrapper" <?php if($hidden) echo "style=\"display: none;\"";?>>
-	<!-- HEADER MOBILE-->
-	<header class="header-mobile d-block d-lg-none">
-		<div class="header-mobile__bar">
-			<div class="container-fluid">
-				<div class="header-mobile-inner">
-					<a class="logo" href="index.html">
-						<img src="<?php echo base_url(); ?>public/images/icon/logo.png" alt="CoolAdmin" />
-					</a>
-					<button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-					</button>
-				</div>
-			</div>
-		</div>
-		<nav class="navbar-mobile">
-			<div class="container-fluid">
-				<ul class="navbar-mobile__list list-unstyled">
-					<li class="has-sub">
-						<a class="js-arrow" href="#">
-							<i class="fas fa-tachometer-alt"></i>DASHBOARD</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fas fa-chart-bar"></i>PLANS</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fas fa-table"></i>CONNECTION</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="far fa-check-square"></i>HISTORY</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-	</header>
-	<!-- END HEADER MOBILE-->
-
 	<!-- MENU SIDEBAR-->
 	<aside class="menu-sidebar d-none d-lg-block">
 		<div class="logo">
@@ -187,11 +146,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<nav class="navbar-sidebar">
 				<ul class="list-unstyled navbar__list">
 					<li class="active-navbar">
-						<a class="js-arrow" >
+						<a class="js-arrow"  onclick="showDashboard(this);">
 							<img width="20px" style="margin-right: 10px;" src="<?php echo base_url(); ?>public/images/icon/Dashboard.svg">DASHBOARD</a>
 					</li>
 					<li >
-						<a onclick="showPlan();">
+						<a onclick="showPlan(this);">
 							<img width="20px" style="margin-right: 10px;" src="<?php echo base_url(); ?>public/images/icon/plans.png">PLANS</a>
 					</li>
 					<li>
@@ -202,18 +161,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<a href="#">
 							<img width="20px" style="margin-right: 10px;" src="<?php echo base_url(); ?>public/images/icon/history.svg">HISTORY</a>
 					</li>
+					<li>
+						<a onclick="showSubscriber(this);">
+							<img width="20px" style="margin-right: 10px;" src="<?php echo base_url(); ?>public/images/icon/subscribe.svg">SUBSCRIBERS</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
 	</aside>
 	<!-- END MENU SIDEBAR-->
-
 	<!-- PAGE CONTAINER-->
 	<div class="page-container">
-
+		<header class="header-desktop">
+		</header>
 		<!-- MAIN CONTENT-->
 		<div class="main-content">
 			<div class="section__content section__content--p30">
+				<div class="subscribers-view" style="display: none;">
+					<table class="table">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>Code</th>
+							<th>Ipaddress</th>
+							<th>Create date</th>
+							<th>Active date</th>
+						</tr>
+						</thead>
+						<tbody class="body-table">
+
+						</tbody>
+					</table>
+				</div>
 				<div class="dashboard-view" <?php if($dashboard) echo "style=\"display: none;\"";?>>
 					<table id="Table_01" width="1159" height="2035" border="0" cellpadding="0" cellspacing="0">
 						<tr>
@@ -256,7 +235,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="card-header">
 									<strong class="card-title" v-if="headerText">Plans</strong>
 									<button class="au-btn au-btn-icon au-btn--blue" >
-										<i class="zmdi zmdi-plus"></i>add plan</button>
 								</div>
 								<div class="card-body">
 									<ul>
@@ -270,7 +248,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<div class="plan-name">HA NOI CAMPUS</div>
 													<div class="plan-info-txt">Insert QoS bash script with input params from plan data
 													</div>
-													<div class="connction-added">1 connection added</div>
+													<div class="connction-added">2 connection added</div>
 												</div>
 												<div class="item-btn">
 													<a  href="javascript:void(0)"><img width="30px" src="<?php echo base_url(); ?>public/images/icon/plus.svg" alt="">Connection</a>
@@ -325,7 +303,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<div class="plan-name">BINH PHUOC CAMPUS</div>
 													<div class="plan-info-txt">Insert QoS bash script with input params from plan data
 													</div>
-													<div class="connction-added">1 connection added</div>
+													<div class="connction-added">0 connection added</div>
 												</div>
 												<div class="item-btn">
 													<a href="javascript:void(0)"><img width="30px" src="<?php echo base_url(); ?>public/images/icon/plus.svg" alt="">Connection</a>
@@ -343,7 +321,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<div class="plan-name">HO CHI MINH CAMPUS</div>
 													<div class="plan-info-txt">Insert QoS bash script with input params from plan data
 													</div>
-													<div class="connction-added">1 connection added</div>
+													<div class="connction-added" id="connction-added-demo">1 connection added</div>
 												</div>
 												<div class="item-btn">
 													<a  href="javascript:void(0)" class="show-modal" data-toggle="modal" data-target="#mediumModal"><img width="30px" src="<?php echo base_url(); ?>public/images/icon/plus.svg" alt="">Connection</a>
@@ -356,13 +334,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</li>
 									</ul>
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="copyright">
-								<p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
 							</div>
 						</div>
 					</div>
@@ -388,13 +359,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="view-step1" style="display: none;"></div>
 						<div class="view-step2" style="display: none;"></div>
 						<form action="<?php echo base_url(); ?>" method="post" class="row m-t-25" id="formsubmit" >
-							<input type="text" hidden="hidden" name="crudaction" value="insert">
+							<input type="hidden" name="crudaction" value="insert" id="crudaction">
+							<input type="hidden" name="id" id="id-datapack">
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
 										<label for="location" class="control-label mb-1">Location</label>
 										<select name="location" id="location" class="form-control" disabled = "disabled">
-											<option value="Viet Nam">Viet Nam</option>
+											<option value="HCM CAMPUS">HCM CAMPUS</option>
 											<option value="1">HCM</option>
 											<option value="2">Hà Nội</option>
 											<option value="3">Bình Phước</option>
@@ -723,7 +695,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		padding: 5px;
 	}
 	.div-alt .div-alt-content .item-btn a{
-		padding-left: 90px;
+		padding-left: 20px;
 	}
 	.item-sub-plan{
 		display: none;
@@ -886,9 +858,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>public/js/main.js"></script>
 
 <script>
-	function showPlan(){
+	function showDashboard($ob) {
+		$('.navbar__list li.active-navbar').removeClass('active-navbar');
+		$($ob).parent().addClass('active-navbar');
+		$(".dashboard-view").show();
+		$("#view-plan").hide();
+		$(".subscribers-view").hide();
+	}
+	function showPlan($ob){
+		$('.navbar__list li.active-navbar').removeClass('active-navbar');
+		$($ob).parent().addClass('active-navbar');
 		$("#view-plan").show();
 		$(".dashboard-view").hide();
+		$(".subscribers-view").hide();
 	}
 	$(document).ready(function () {
 		loadConnection();
@@ -896,7 +878,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var ipInput = $('#ip').ipInput();
 
 		$('.show-modal').click(function () {
+			$('input[name="crudaction"]').val('insert');
+			$('input[name="id"]').val("");
+			$('input[name=\"code\"]').removeAttr('checked');
+			$('select[name=\"ipaddress\"] > option').removeAttr('selected');
 			$('#formsubmit').show();
+			var myDate = new Date();
+			var str = myDate.getFullYear() + '-' +('0' + (myDate.getMonth()+1)).slice(-2)+ '-' +  myDate.getDate() + 'T'+myDate.getHours()+ ':'+('0' + (myDate.getMinutes())).slice(-2)+ ':'+myDate.getSeconds();
+			$("#date-active").val(str);
 			$('.step0').show();
 			$('.step1').hide();
 			$('.btn-save').hide();
@@ -916,7 +905,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('.view-step2').show();
 		});
 		$('.btn-save').click(function () {
-			$('#ipaddress').val(ipInput.getIp());
 			var model = validateform();
 			console.log(model);
 			if(!model['error']){
@@ -991,6 +979,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$('#Table_login').hide();
 		$('.page-wrapper').show();
 	}
+	function editModal($id) {
+		$('input[name="crudaction"]').val('edit');
+		$('input[name="id"]').val($id);
+		$.ajax({
+			ty1e: "GET",
+			url: "<?php echo base_url(); ?>index.php/welcome/getone",
+			dataType: 'json',
+			data : {"id" : $id},
+			success : function (res) {
+				var $data = res[0];
+
+				$('input[name=\"code\"][value=\"'+$data.code+'\"]').attr('checked', 'checked');
+				$('select[name=\"ipaddress\"] > option[value=\"'+$data.ipaddress+'\"]').attr('selected', true);
+				$('#date-active').val(formatdate($data.activedate));
+			}
+		});
+		$('#mediumModal').modal('show');
+	}
+	function formatdate($date) {
+		var $str = $date.replace(" ", "T");
+		return $str;
+	}
+	function showSubscriber($ob) {
+		$('.navbar__list li.active-navbar').removeClass('active-navbar');
+		$($ob).parent().addClass('active-navbar');
+		$(".dashboard-view").hide();
+		$("#view-plan").hide();
+		$(".subscribers-view").show();
+		$(".body-table").empty();
+		$.ajax({
+			ty1e: "GET",
+			url: "<?php echo base_url(); ?>index.php/welcome/getall",
+			dataType: 'json',
+			success : function (res) {
+				var data = [];
+				$.each(res, function (index, value) {
+					var trEl = $('<tr></tr>');
+					var liIndexEl = $('<td></td>');
+					liIndexEl.text(index+1);
+					var liCodeEl = $('<td></td>');
+					liCodeEl.text(value.code);
+					var liIpEl = $('<td></td>');
+					liIpEl.text(value.ipaddress);
+					var liCeateEl = $('<td></td>');
+					liCeateEl.text(value.createddate);
+					var liAdateEl = $('<td></td>');
+					liAdateEl.text(value.activedate);
+					trEl.append(liIndexEl);
+					trEl.append(liCodeEl);
+					trEl.append(liIpEl);
+					trEl.append(liCeateEl);
+					trEl.append(liAdateEl);
+					data.push(trEl);
+				});
+				$(".body-table").append(data);
+			}
+		});
+	}
 	function loadConnection(){
 		$('#hcm-demo').empty();
 		var ip = $("#choose-ip").val();
@@ -1000,6 +1046,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			dataType: 'json',
 			data : {"ip" : ip},
 			success : function (res) {
+				$("#connction-added-demo").text(res.length + ' connection added');
 				var data = [];
 				$.each(res,function (index,value) {
 					var liEl = $('<li></li>');
@@ -1011,7 +1058,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					var info = value.code + ", " + value.ipaddress+", "+value.activedate;
 					var planInfoTxtEl = $('<div class="plan-info-txt"></div>');
 					planInfoTxtEl.text(info);
-					var itemBtnEl = $('<div class="item-btn"><a href="<?php echo base_url(); ?>index.php/welcome/delete?id='+value.id+'"><i class="fa fa-trash"></i>Delete</a></div>');
+					var itemBtnEl = $('<div class="item-btn"><a onclick="editModal('+value.id+');"><i class="fa fa-edit"></i>Edit</a><a href="<?php echo base_url(); ?>index.php/welcome/delete?id='+value.id+'"><i class="fa fa-trash"></i>Delete</a></div>');
 					itemTextEl.append(planNameEl);
 					itemTextEl.append(planInfoTxtEl);
 					divAltContentEl.append(itemIconEl);
@@ -1025,6 +1072,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		})
 	}
+
 </script>
 </body>
 </html>
