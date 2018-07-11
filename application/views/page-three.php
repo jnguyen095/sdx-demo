@@ -544,7 +544,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		width: 407px;
 		height: 42px;
 	}
-	#Table_plan_modal input[type="submit"] {
+	#Table_plan_modal #btn-next {
 		background: url("<?php echo base_url(); ?>public/images/307035939_38.png") no-repeat scroll 0 0 transparent;
 		color: #000000;
 		cursor: pointer;
