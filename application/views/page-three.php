@@ -858,6 +858,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>public/js/main.js"></script>
 
 <script>
+	var strSelect = "";
 	function showDashboard($ob) {
 		$('.navbar__list li.active-navbar').removeClass('active-navbar');
 		$($ob).parent().addClass('active-navbar');
@@ -878,10 +879,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var ipInput = $('#ip').ipInput();
 
 		$('.show-modal').click(function () {
+			changeObject();
 			$('input[name="crudaction"]').val('insert');
 			$('input[name="id"]').val("");
 			$('input[name=\"code\"]').removeAttr('checked');
-			$('select[name=\"ipaddress\"] > option').removeAttr('selected');
+			$('select[name=\"ipaddress\"] > option[value=\"'+strSelect+'\"]').attr('selected',true);
 			$('#formsubmit').show();
 			var myDate = new Date();
 			var str = myDate.getFullYear() + '-' +('0' + (myDate.getMonth()+1)).slice(-2)+ '-' +  myDate.getDate() + 'T'+myDate.getHours()+ ':'+('0' + (myDate.getMinutes())).slice(-2)+ ':'+myDate.getSeconds();
@@ -917,7 +919,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			var model = [];
 			model['error'] = false;
 			model['message'] = [];
-			if(data['code'] === undefined || data['code'] === ''){
+			if($('input[name="code"]:checked').val() === undefined || $('input[name="code"]:checked').val() === ''){
 				model['error'] = true;
 				model['message'].push('Code is empty');
 			}if($('#date-active').val() === undefined || $('#date-active').val() === ''){
@@ -928,11 +930,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 		$('#location').change(function () {
 			data['location'] = $(this).find('option:selected').text();
-			changeObject(data);
+			changeObject();
 		});
 		$('#option-item').change(function () {
 			data['option-item'] = $(this).find('option:selected').text();
-			changeObject(data);
+			changeObject();
 		});
 		$('input:radio[name=code]').change(function () {
 			data['code'] = $(this).val();
@@ -940,17 +942,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		});
 		$('input:radio[name=isps]').change(function () {
 			data['isps'] = $(this).val();
-			changeObject(data);
+			changeObject();
 		});
 		$('#plan-name').on('input',function () {
 			data['plan-name'] = $(this).val();
-			changeObject(data);
+			changeObject();
 		});
-		function changeObject(data) {
-			$('#title-plan-end').text($('#plan-name').val());
-			$('#refix-end').text(data['code']);
-			$('#refix-end').text(data['code'] + ', ' + $('input:radio[name=isps]').val() + ', ' + $('#location').val());
-		}
 		$('.btn-angle-down').click(function () {
 			var parrent = $(this).parent();
 			var icon = $(this).find('i');
@@ -974,6 +971,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('#Table_login').show();
 		});
 	})
+	function changeObject() {
+		$('#refix-end').empty();
+		$('#title-plan-end').text($('#plan-name').val());
+		$('#refix-end').text($('input[name="code"]:checked').val() + ', ' + $('input:radio[name=isps]').val() + ', ' + $('#location').val());
+	}
 	function  showPagePlanMain() {
 		loadConnection(false);
 		$('#Table_login').hide();
@@ -999,6 +1001,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$('.btn-save').hide();
 				$('.view-step1').hide();
 				$('.view-step2').hide();
+				changeObject();
 			}
 		});
 	}
@@ -1049,6 +1052,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}else{
 			ip = $("#choose-ip").val();
 		}
+		strSelect = ip;
 		$.ajax({
 			ty1e: "GET",
 			url: "<?php echo base_url(); ?>index.php/welcome/getdatapacks",
