@@ -186,12 +186,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="menu-sidebar__content js-scrollbar1">
 			<nav class="navbar-sidebar">
 				<ul class="list-unstyled navbar__list">
-					<li >
-						<a class="js-arrow" href="#">
+					<li class="active-navbar">
+						<a class="js-arrow" >
 							<img width="20px" style="margin-right: 10px;" src="<?php echo base_url(); ?>public/images/icon/Dashboard.svg">DASHBOARD</a>
 					</li>
-					<li class="active-navbar">
-						<a href="#">
+					<li >
+						<a onclick="showPlan();">
 							<img width="20px" style="margin-right: 10px;" src="<?php echo base_url(); ?>public/images/icon/plans.png">PLANS</a>
 					</li>
 					<li>
@@ -210,16 +210,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- PAGE CONTAINER-->
 	<div class="page-container">
-		<!-- HEADER DESKTOP-->
-		<header class="header-desktop">
-
-		</header>
-		<!-- HEADER DESKTOP-->
 
 		<!-- MAIN CONTENT-->
 		<div class="main-content">
 			<div class="section__content section__content--p30">
-				<div class="container-fluid">
+				<div class="dashboard-view">
+					<table id="Table_01" width="1159" height="2035" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td colspan="3">
+								<img src="<?php echo base_url(); ?>public/images/dashboard__01.jpg" width="1159" height="251" alt=""></td>
+						</tr>
+						<tr>
+							<td rowspan="4">
+								<img src="<?php echo base_url(); ?>public/images/dashboard__02.jpg" width="328" height="1784" alt=""></td>
+							<td>
+								<a href="Plans.html">
+									<img src="<?php echo base_url(); ?>public/images/dashboard__03.jpg" width="123" height="29" border="0" alt=""></a></td>
+							<td rowspan="4">
+								<img src="<?php echo base_url(); ?>public/images/dashboard__04.jpg" width="708" height="1784" alt=""></td>
+						</tr>
+						<tr>
+							<td>
+								<img src="<?php echo base_url(); ?>public/images/dashboard__05.jpg" width="123" height="236" alt=""></td>
+						</tr>
+						<tr>
+							<td>
+								<a href="Plans.html">
+									<img src="<?php echo base_url(); ?>public/images/dashboard__06.jpg" width="123" height="29" border="0" alt=""></a></td>
+						</tr>
+						<tr>
+							<td>
+								<img src="<?php echo base_url(); ?>public/images/dashboard__07.jpg" width="123" height="1490" alt=""></td>
+						</tr>
+					</table>
+				</div>
+				<div class="container-fluid" id="view-plan" style="display:none;">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="message">
@@ -360,7 +385,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<form action="<?php echo base_url(); ?>" method="post" class="row m-t-25" id="formsubmit">
+						<div class="view-step1" style="display: none;"></div>
+						<div class="view-step2" style="display: none;"></div>
+						<form action="<?php echo base_url(); ?>" method="post" class="row m-t-25" id="formsubmit" >
 							<input type="text" hidden="hidden" name="crudaction" value="insert">
 							<div class="container-fluid">
 								<div class="row">
@@ -520,11 +547,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 					<div class="col-md-4 btn-next-cancel">
-						<button class="btn btn-primary" id="btn-next">
-							NEXT
-						</button>
 						<button class="btn btn-warning" data-dismiss="modal" id="btn-cencel">
 							CANCEL
+						</button>
+						<button class="btn btn-primary step0">
+							NEXT
+						</button>
+						<button class="btn btn-primary step1" style="display: none;">
+							NEXT
+						</button>
+						<button class="btn btn-primary btn-save" style="display: none;">
+							NEXT
 						</button>
 					</div>
 				</div>
@@ -557,6 +590,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin: 0 auto;
 		width: 100%;
 		height: 100%;
+	}
+	.view-step1{
+		background: url("<?php echo base_url(); ?>public/images/step2.png") no-repeat scroll 0 0 transparent;
+		width: 100%;
+		height: 690px;
+	}
+	.view-step2{
+		background: url("<?php echo base_url(); ?>public/images/step3.png") no-repeat scroll 0 0 transparent;
+		width: 100%;
+		height: 850px;
 	}
 </style>
 <style>
@@ -781,8 +824,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin-left: 0;
 		height: 271px;
 	}
-	.btn-next-cancel #btn-next, #btn-cencel{
-		float: right;
+	.btn-next-cancel #btn-cencel{
 		margin-left: 10px;
 	}
 	.form-check{
@@ -844,11 +886,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>public/js/main.js"></script>
 
 <script>
+	function showPlan(){
+		$("#view-plan").show();
+		$(".dashboard-view").hide();
+	}
 	$(document).ready(function () {
 		loadConnection();
 		var data = [];
 		var ipInput = $('#ip').ipInput();
-		$('#btn-next').click(function () {
+
+		$('.step0').click(function () {
+			$('.step0').hide();
+			$('.step1').show();
+			$('#formsubmit').hide();
+			$('.view-step1').show();
+		});
+		$('.step1').click(function () {
+			$('.step1').hide();
+			$('.btn-save').show();
+			$('.view-step1').hide();
+			$('.view-step2').show();
+		});
+		$('.btn-save').click(function () {
 			$('#ipaddress').val(ipInput.getIp());
 			var model = validateform();
 			console.log(model);
