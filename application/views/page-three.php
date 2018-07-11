@@ -988,7 +988,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var ip = $("#choose-ip").val();
 		$.ajax({
 			ty1e: "GET",
-			url: "<?php echo base_url(); ?>welcome/getdatapacks",
+			url: "<?php echo base_url(); ?>index.php/welcome/getdatapacks",
 			dataType: 'json',
 			data : {"ip" : ip},
 			success : function (res) {
